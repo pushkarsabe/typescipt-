@@ -230,11 +230,234 @@
 //   West,
 // }
 // console.log(CardinalDirections.East);//1
-var CardinalDirections;
-(function (CardinalDirections) {
-    CardinalDirections[CardinalDirections["North"] = 1] = "North";
-    CardinalDirections[CardinalDirections["East"] = 2] = "East";
-    CardinalDirections[CardinalDirections["South"] = 3] = "South";
-    CardinalDirections[CardinalDirections["West"] = 4] = "West";
-})(CardinalDirections || (CardinalDirections = {}));
-console.log(CardinalDirections.East); //2
+// enum CardinalDirections {
+//   North = 1,
+//   East,
+//   South,
+//   West,
+// }
+// console.log(CardinalDirections.East);//2
+// Type Aliases
+// type CarYear = number;
+// type CarType = string;
+// type CarModel = string;
+// type Car = {
+//   year: CarYear;
+//   type: CarType;
+//   model: CarModel;
+// };
+// const carYear: CarYear = 2001;
+// const carType: CarType = "Toyota";
+// const carModel: CarModel = "Corolla";
+// const car: Car = {
+//   year: carYear,
+//   type: carType,
+//   model: carModel,
+// };
+// Interfaces - Interfaces are similar to type aliases, except they only apply to object types.
+// interface Rectangle {
+//   height: number;
+//   width: number;
+//   printdetails(): void;
+// }
+// const rectangle: Rectangle = {
+//   height: 20,
+//   width: 10,
+//   printdetails() {
+//     console.log("height : ", this.height, "width = ", this.width);
+//   },
+// };
+// interface Rectangle {
+//   height: number;
+//   width: number;
+// }
+// interface ColoredRectangle extends Rectangle {
+//   color: string;
+// }
+// const coloredRectangle: ColoredRectangle = {
+//   height: 20,
+//   width: 10,
+//   color: "red",
+// };
+// TypeScript Union Types -Union types are used when a value can be more than a single type.
+// function printStatusCode(code: string | number) {
+//   console.log(`My status code is ${code}.`);
+// }
+// printStatusCode(404);
+// printStatusCode("404");
+// Return Type
+// function getTime(): number {
+//   return new Date().getTime();
+// }
+// function printHello(): void {
+//   console.log("Hello!");
+// }
+// function add(a: number, b: number, c?: number) {
+//   return a + b + (c || 0);
+// }
+// function pow(value: number, exponent: number = 10) {
+//   return value ** exponent;
+// }
+// function add(a: number, b: number, ...rest: number[]) {
+//   return a + b + rest.reduce((p, c) => p + c, 0);
+// }
+// TypeScript Casting
+// Casting with as
+// let x: unknown = "hello";
+// console.log((x as string).length);
+// TypeScript Classes
+// public - (default) allows access to the class member from anywhere
+// private - only allows access to the class member from within the class
+// protected - allows access to the class member from itself and any classes that inherit it, which is covered in the inheritance section below
+// class Person {
+//   private name: string;
+//   public constructor(name: string) {
+//     this.name = name;
+//   }
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+// const person = new Person("Jane");
+// console.log(person.getName());
+// person.name; //'name' is private and only accessible within class 'Person'
+// class Person {
+//   private readonly name: string;
+//   public constructor(name: string) {
+//     // name cannot be changed after this initial definition, which has to be either at its declaration or in the constructor.
+//     this.name = name;
+//   }
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+// const person = new Person("Jane");
+// console.log(person.getName());
+// interface shape {
+//   getArea: () => number;
+// }
+// class Rectangle implements shape {
+//   public constructor(
+//     protected readonly width: number,
+//     protected readonly height: number
+//   ) {}
+//   public getArea(): number {
+//     return this.width * this.height;
+//   }
+// }
+// interface Shape {
+//   getArea: () => number;
+// }
+// class Rectangle implements Shape {
+//   public constructor(
+//     protected readonly width: number,
+//     protected readonly height: number
+//   ) {}
+//   public getArea(): number {
+//     return this.width * this.height;
+//   }
+// }
+// class Square extends Rectangle {
+//   public constructor(width: number) {
+//     super(width, width);
+//   }
+//   public getArea(): number {
+//     return this.width * this.width;
+//   }
+// }
+// Override
+// interface Shape {
+//   getArea: () => number;
+// }
+// class Rectangle implements Shape {
+//   // using protected for these members allows access from classes that extend from this class, such as Square
+//   public constructor(
+//     protected readonly width: number,
+//     protected readonly height: number
+//   ) {}
+//   public getArea(): number {
+//     return this.width * this.height;
+//   }
+//   public toString(): string {
+//     return `Rectangle[width=${this.width}, height=${this.height}]`;
+//   }
+// }
+// class Square extends Rectangle {
+//   public constructor(width: number) {
+//     super(width, width);
+//   }
+//   // this toString replaces the toString from Rectangle
+//   public override toString(): string {
+//     return `Square[width=${this.width}]`;
+//   }
+// }
+// let r = new Rectangle(10, 14);
+// console.log(r.getArea());
+// console.log(r.toString());
+// let s = new Square(15);
+// console.log(s.getArea());
+// console.log(s.toString());
+// abstract class Polygon {
+//   public abstract getArea(): number;
+//   public toString(): string {
+//     return `Polygon[area=${this.getArea()}]`;
+//   }
+// }
+// class Rectangle extends Polygon {
+//   public constructor(
+//     protected readonly width: number,
+//     protected readonly height: number
+//   ) {
+//     super();
+//   }
+//   public getArea(): number {
+//     return this.width * this.height;
+//   }
+// }
+// Generics can be used to create generalized classes, like Map.
+// class NamedValue<T> {
+//   private _value: T | undefined;
+//   constructor(private name: string) {}
+//   public setValue(value: T) {
+//     this._value = value;
+//   }
+//   public getValue(): T | undefined {
+//     return this._value;
+//   }
+//   public toString(): string {
+//     return `${this.name}: ${this._value}`;
+//   }
+// }
+// let value = new NamedValue<number>("myNumber");
+// value.setValue(10);
+// console.log(value.toString()); // myNumber: 10
+// keyof with explicit keys keyof is a keyword in TypeScript which is used to extract the key type from an object type.
+// interface Person {
+//   name: string;
+//   age: number;
+// }
+// function printPersonProperty(person: Person, property: keyof Person) {
+//   console.log(`Printing person property ${property}: "${person[property]}"`);
+// }
+// let person = {
+//   name: "Max",
+//   age: 27,
+// };
+// printPersonProperty(person, "name"); // Printing person property name: "Max"
+// TypeScript Null & Undefined- TypeScript has a powerful system to deal with null or undefined values.
+// let value: string | undefined | null = null;
+// value = "hello";
+// value = undefined;
+// function printMileage(mileage: number | null | undefined) {
+//   console.log(`Mileage: ${mileage ?? "Not Available"}`);
+// }
+// printMileage(null); // Prints 'Mileage: Not Available'
+// printMileage(0); // Prints 'Mileage: 0'
+// function getValue(): string | undefined {
+//   return "hello";
+// }
+// let value = getValue();
+// // console.log("value length: " + value?.length); //value length: 5
+// let array: number[] = [1, 2, 3, 5];
+// let value = array[3];
+// console.log(`value = ${value}`); //value = 5
