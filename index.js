@@ -68,9 +68,173 @@
 // var y = 2;
 // console.log("BigInt Sum:", maxSafeNumber + x);
 // console.log("BigInt Sum:", maxSafeNumber + y);`
-var maxSafeNumber1 = 9007199254740991n;
-console.log("Max Safe Integer:", maxSafeNumber1);
-var x2 = 1n;
-var y2 = 2n;
-console.log("BigInt Sum:", maxSafeNumber1 + x2);
-console.log("BigInt Sum:", maxSafeNumber1 + y2);
+// var maxSafeNumber1: bigint = 9007199254740991n;
+// console.log("Max Safe Integer:", maxSafeNumber1);
+// var x2 = 1n;
+// var y2 = 2n;
+// console.log("BigInt Sum:", maxSafeNumber1 + x2);
+// console.log("BigInt Sum:", maxSafeNumber1 + y2);
+// Symbol Data Type
+// var sym1 = Symbol();
+// var sym2 = Symbol();
+// console.log(sym1 == sym2); //false
+// console.log(typeof sym1); // symbol
+// var sym3 = Symbol("key1");
+// var sym4 = Symbol("key1");
+// console.log(sym3 == sym4); //false
+// var sysm5 = Symbol("DynamicId");
+// var obj = {
+//   [sysm5]: 1,
+//   name: "pushkar",
+//   age: 29,
+// };
+// console.log(obj);
+// console.log(obj.id); // error TS2339: Property 'id' does not exist on type '{ [x: symbol]: number; name: string; age: number; }'.
+// console.log(obj[sysm5]);
+// let array: number[] = [];
+// array.push("hi")
+// console.log(array);
+// Type Annotations and Inference
+// Explicit Type Annotations
+// let greeting: string = "Hello, TypeScript!";
+// let userCount: number = 42;
+// let isLoading: boolean = true;
+// let scores: number[] = [100, 95, 98];
+// Basic Type Inference
+// let username = "pushkar";
+// let score = 100;
+// let flags = [true, false, true];
+// function add(a: number, b: number) {
+//   return a + b;
+// }
+// const user = {
+//   name: "Alice",
+//   age: 30,
+//   isAdmin: true,
+// };
+//  TypeScript knows these properties exist
+// console.log(user.name);  // OK
+// console.log(user.email); // Error: Property 'email' does not exist
+// Explicit Type Mismatch
+// let username: string = "alice";
+// username = 42; // Error: Type 'number' is not assignable to type 'string'
+//  let score = 100;  // TypeScript infers 'number'
+// score = "high";  // Error: Type 'string' is not assignable to type 'number'
+// function add(a: number, b: number): number {
+//   return a + b;
+// }
+// console.log(add(4, 3)); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
+// 1. JSON.parse returns 'any' because the structure isn't known at compile time
+// const data = JSON.parse('{ "name": "Alice", "age": 30 }');
+// let something;  // Type is 'any'
+// something = 'hello';
+// something = 42;  // No error
+// TypeScript Special Types
+// Type: any
+// let u = true;
+// u = "string"; // Error: Type 'string' is not assignable to type 'boolean'.
+// Math.round(u); // Error: Argument of type 'boolean' is not assignable to parameter of type 'number'.
+// let v: any = true;
+// v = "string"; // no error as it can be "any" type
+// Math.round(v); // no error as it can be "any" type
+// Type: unknown
+// let w: unknown = 1;
+// w = "string"; // no error
+// w = {
+//   runANonExistentMethod: () => {
+//     console.log("I think therefore I am");
+//   },
+// } as { runANonExistentMethod: () => void };
+// // How can we avoid the error for the code commented out below when we don't know the type?
+// // w.runANonExistentMethod(); // Error: Object is of type 'unknown'.
+// if (typeof w === "object" && w !== null) {
+//   (w as { runANonExistentMethod: Function }).runANonExistentMethod();
+// }
+// function processValue(value: unknown) {
+//   if (typeof value === "string") {
+//     // value is now treated as string
+//     console.log(value.toUpperCase());
+//   } else if (Array.isArray(value)) {
+//     // value is now treated as any[]
+//     console.log(value.length);
+//   }
+// }
+// processValue("hello");
+// Type: never
+// 1. Function that never returns
+// function throwError(message: string): never {
+//   throw new Error(message);
+// }
+// Type: undefined & null
+// let y: undefined = undefined;
+// let z: null = null;
+// Optional Parameters and Properties
+// Optional parameter (implicitly `string | undefined`)
+// function greet(name?: string) {
+//   return `Hello, ${name || "stranger"}`;
+// }
+// Optional property in an interface
+// interface User {
+//   name: string;
+//   age?: number; // Same as `number | undefined` }
+// }
+// Nullish Coalescing and Optional Chaining
+// Nullish coalescing (??) - only uses default if value is null or undefined
+// const value = input ?? 'default';
+// Optional chaining (?.) - safely access nested properties
+// const street = user?.address?.street;
+// const names: string[] = [];
+// names.push("Dylan"); // no error
+// names.push(3); // Error: Argument of type 'number' is not assignable to parameter of type 'string'.
+// const names: readonly string[] = ["Dylan"];
+// names.push("Jack"); // Error: Property 'push' does not exist on type 'readonly string[]'.
+// const numbers = [1, 2, 3]; // inferred to type number[]
+// numbers.push(4); // no error
+// numbers.push("2"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+// let head: number = numbers[0]; // no error
+// TypeScript Tuples-Typed Arrays
+// let ourTuple: [number, boolean, string] = [1,true,"piushkar"];
+// ourTuple.push('Something new and wrong');
+// console.log(ourTuple);
+// define our readonly tuple
+// const ourReadonlyTuple: readonly [number, boolean, string] = [5, true, 'The Real Coding God'];
+// throws error as it is readonly.
+// ourReadonlyTuple.push('Coding God took a day off');
+// const graph: [number, number] = [55.2, 41.3];
+// const [x, y] = graph;
+// console.log(x, y);
+// TypeScript Object Types
+// const car: { type: string; model: string; year: number } = {
+//   type: "Toyota",
+//   model: "Corolla",
+//   year: 2009,
+// };
+// Type Inference
+// const car = {
+//   type: "Toyota",
+// };
+// car.type = "Ford"; // no error
+// car.type = 2; // Error: Type 'number' is not assignable to type 'string'.
+// const car: { type: string; mileage: number } = { // Error: Property 'mileage' is missing in type
+//   type: "Toyota",
+// };
+// car.mileage = 2000;
+// const car: { type: string; mileage?: number } = {
+//   type: "Toyota",
+// };
+// console.log(car.mileage);//undefined
+// enum CardinalDirections {
+//   North,
+//   East,
+//   South,
+//   West,
+// }
+// console.log(CardinalDirections.East);//1
+var CardinalDirections;
+(function (CardinalDirections) {
+    CardinalDirections[CardinalDirections["North"] = 1] = "North";
+    CardinalDirections[CardinalDirections["East"] = 2] = "East";
+    CardinalDirections[CardinalDirections["South"] = 3] = "South";
+    CardinalDirections[CardinalDirections["West"] = 4] = "West";
+})(CardinalDirections || (CardinalDirections = {}));
+console.log(CardinalDirections.East); //2
